@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Multichat</title>
+    <link rel="stylesheet" href="./dashboard.css" />
+  </head>
+  <body>
+    <header class="toolbar">
+      <label
+        >Streamer
+        <select id="profile-select"></select
+      ></label>
+      <button type="button" id="new-profile">New</button>
+      <button type="button" id="edit-profile">Edit</button>
+      <span class="separator"></span>
+      <label
+        >Layout
+        <select id="preset-select"></select
+      ></label>
+      <label
+        >Main
+        <select id="main-select"></select
+      ></label>
+      <span id="messages" role="status"></span>
+    </header>
+
+    <main id="panes"></main>
+
+    <dialog id="profile-dialog">
+      <form method="dialog" id="profile-form">
+        <h2 id="profile-dialog-title">New streamer</h2>
+        <label>Name <input name="name" required maxlength="40" autocomplete="off" /></label>
+        <label>Twitch <input name="twitch" placeholder="channel name or link" autocomplete="off" /></label>
+        <label
+          >YouTube <input name="youtube" placeholder="@handle, video link or ID" autocomplete="off"
+        /></label>
+        <label>TikTok <input name="tiktok" placeholder="@handle or link" autocomplete="off" /></label>
+        <label
+          >Main stream
+          <select name="main"></select
+        ></label>
+        <p class="form-error" id="profile-error" role="alert"></p>
+        <footer>
+          <button type="button" id="delete-profile" class="danger">Delete</button>
+          <span class="separator"></span>
+          <button type="button" id="cancel-profile">Cancel</button>
+          <button type="submit">Save</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
