@@ -29,6 +29,13 @@ const CROPS: Record<TikTokCropMode, Crop> = {
 const MARKER = 'data-multichat-crop';
 const CHECK_INTERVAL_MS = 1000;
 
+/**
+ * How high the cropped panel stacks. TikTok's page content stays at z-index 100 or below, while its
+ * popovers and dialogs (message ⋮ menu, emoji picker, settings) use 2000 and up (measured 2026-11-15).
+ * Between the two, the panel covers the page and TikTok's menus still open on top of it.
+ */
+const CROP_LAYER = 1000;
+
 // Two things keep a fixed panel from covering the frame, both caused by its ancestors:
 // - a transform, filter, contain, will-change or perspective makes `fixed` relative to that ancestor;
 // - a z-index or isolation caps how high the panel can stack (TikTok's player sits under z-[1]/z-[2]).
@@ -106,7 +113,7 @@ function cropCss(hideRest: boolean): string {
       margin: 0 !important;
       border-radius: 0 !important;
       transform: none !important;
-      z-index: 2147483647 !important;
+      z-index: ${CROP_LAYER} !important;
       --live-chat-width: 100vw;
     }`;
   const hideEverythingElse = `
